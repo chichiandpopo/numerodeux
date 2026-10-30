@@ -417,7 +417,7 @@ function renderTable(){
         `<div class="cell time">${s.time}</div>`+
         ROLE_ATTRS.map(a=>{const k=s.cast[a];return `<div class="cell"><span class="role-pill badge-${k}">${ACTOR[k]||k}</span>${s.first[a]?'<span class="fb">첫공</span>':''}</div>`;}).join('')+
         `<div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-${s.sid}" placeholder="E-9"><button onclick="confirmSeat('${s.sid}')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-${s.sid}"></div></div>`+
-        `<div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('${s.sid}')" title="복사">🎤</button></div>`+
+        `<div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('${s.sid}')" title="복사">👓</button></div>`+
         `</div>`;
     });
   }
@@ -646,12 +646,12 @@ function showCopyFallbackModal(text){
   document.body.appendChild(ov);ta.focus();ta.select();
 }
 function copyText(text,btn){
-  const ok=()=>{if(btn){btn.textContent='✅';setTimeout(()=>{btn.textContent='🎤';},1500);}};
+  const ok=()=>{if(btn){btn.textContent='✅';setTimeout(()=>{btn.textContent='👓';},1500);}};
   const legacy=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
     ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px;';
     document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,text.length);
     const r=document.execCommand('copy');document.body.removeChild(ta);if(r){ok();return true;}}catch(e){}return false;};
-  const fail=()=>{if(btn){btn.textContent='⚠️';setTimeout(()=>btn.textContent='🎤',1500);}showCopyFallbackModal(text);};
+  const fail=()=>{if(btn){btn.textContent='⚠️';setTimeout(()=>btn.textContent='👓',1500);}showCopyFallbackModal(text);};
   if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){
     navigator.clipboard.writeText(text).then(ok).catch(()=>{if(!legacy())fail();});
   }else if(!legacy())fail();
