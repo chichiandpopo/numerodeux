@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>두 번째 아이 출연 일정 - 전체 배우</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Black+Han+Sans&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Pirata+One&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --ink:#1d1712; --ink2:#4a3d2c; --ink3:#6e5c40;
+  --paper:rgba(255,246,214,0.5); --line:rgba(29,23,18,0.16);
+  --sat:#22307a; --sun:#8f2a12;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--ink);
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%,rgba(255,226,110,0.45),transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 100%,rgba(190,120,0,0.25),transparent 65%),
+    linear-gradient(180deg,#e2a80c 0%,#efba1c 35%,#ebb517 70%,#dca10b 100%);
+  background-color:#e9b315;min-height:100vh;padding:0 0 50px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:42px 16px 24px;text-align:center;}
+.presents{font-size:10px;letter-spacing:5px;color:var(--ink2);font-weight:700;margin-bottom:12px;}
+.title-en{font-family:'Pirata One',serif;font-size:30px;letter-spacing:1px;color:var(--ink);line-height:1;margin-bottom:4px;}
+.title-kr{font-family:'Black Han Sans',sans-serif;font-size:50px;color:var(--ink);letter-spacing:2px;line-height:1.1;margin-bottom:8px;}
+.title-sub{font-family:'Libre Caslon Text',serif;font-size:11.5px;color:var(--ink2);margin-bottom:14px;}
+.hero-meta{font-size:12px;color:var(--ink);letter-spacing:0.3px;margin-bottom:14px;line-height:1.85;}
+.hero-meta b{font-weight:900;}
+.ticket-row,.info-row{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;}
+.info-row{margin-top:8px;}
+.ticket-btn{display:inline-block;padding:6px 14px;background:var(--ink);border:1px solid var(--ink);
+  border-radius:20px;font-size:11px;font-weight:700;color:#f2c230;text-decoration:none;}
+.info-btn{display:inline-block;padding:5px 12px;background:rgba(255,246,214,0.45);
+  border:1px solid rgba(29,23,18,0.3);border-radius:20px;font-size:10.5px;font-weight:500;color:var(--ink);text-decoration:none;}
+.notice-badge{display:block;max-width:640px;margin:16px auto 0;font-size:10.5px;color:var(--ink2);
+  background:rgba(255,246,214,0.35);border:1px dashed rgba(29,23,18,0.35);border-radius:10px;padding:6px 10px;line-height:1.6;}
+
+/* ---------- content ---------- */
+.content{max-width:720px;margin:0 auto;padding:12px 10px 0;}
+.section-title{text-align:center;font-family:'Libre Caslon Text',serif;font-size:22px;font-weight:700;color:var(--ink);margin:18px 0 10px;letter-spacing:1px;}
+.section-title .kr{display:block;font-family:'Noto Sans KR',sans-serif;font-size:10px;letter-spacing:3px;color:var(--ink2);font-weight:700;margin-top:2px;}
+
+/* ---------- pin bar ---------- */
+.pin-bar{max-width:720px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;min-height:26px;padding:0 10px;}
+.pin-btn{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:2px solid transparent;font-family:inherit;}
+.pin-btn-set{background:var(--ink);color:#f2c230;border-color:var(--ink);}
+.pin-btn-clear{background:rgba(255,246,214,0.5);border-color:rgba(29,23,18,0.35)!important;color:var(--ink);}
+.pin-status{font-size:11px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:5px;}
+.pin-dot{width:8px;height:8px;border-radius:50%;background:#b3261e;display:inline-block;animation:pblink 1.4s infinite;}
+@keyframes pblink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.fb2.pinned{outline:3px solid var(--ink);outline-offset:1px;}
+.pin-hint{font-size:11px;color:var(--ink2);}
+
+/* ---------- filters ---------- */
+.filter-section{max-width:720px;margin:0 auto 4px;padding:0 10px;}
+.filter-group{margin-bottom:8px;}
+.fgl{font-size:10.5px;font-weight:700;color:var(--ink2);text-align:center;letter-spacing:2px;margin-bottom:4px;}
+.filter-row{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;}
+.fb2{padding:5px 12px;border-radius:18px;font-size:11.5px;font-weight:700;cursor:pointer;border:2px solid transparent;font-family:inherit;white-space:nowrap;}
+.btn-all{background:rgba(255,246,214,0.5);color:var(--ink);border-color:rgba(29,23,18,0.3);}
+.btn-all.active{background:var(--ink);color:#f2c230;border-color:var(--ink);}
+.soon{font-weight:500;letter-spacing:0;opacity:0.75;}
+.count-info{text-align:center;font-size:12px;color:var(--ink);margin-bottom:8px;font-weight:700;}
+.input-help{max-width:720px;margin:0 auto 8px;font-size:10px;color:var(--ink2);text-align:center;line-height:1.6;}
+.input-help b{color:var(--ink);}
+
+/* ---------- table ---------- */
+.table-wrap{max-width:720px;margin:0 auto;background:var(--paper);border-radius:14px;overflow:hidden;border:1px solid rgba(29,23,18,0.22);}
+.table-header,.row{display:grid;grid-template-columns:58px 26px 40px repeat(var(--nroles,1),1fr) 74px 20px;gap:2px;}
+.table-header{background:var(--ink);padding:7px 4px;align-items:center;}
+.th{font-size:10.5px;font-weight:700;color:#f2c230;}
+.th-hint{display:block;font-size:7px;font-weight:500;color:#e8d9a8;line-height:1.3;margin-top:1px;}
+.no-show{padding:5px 8px;background:rgba(29,23,18,0.06);font-size:10px;color:var(--ink3);text-align:center;border-top:1px solid var(--line);font-style:italic;}
+.row{padding:5px 4px;border-top:1px solid var(--line);align-items:start;}
+.row.hidden{display:none;}
+.cell{font-size:10px;color:var(--ink);text-align:center;}
+.cell.date{font-weight:700;font-size:10.5px;text-align:left;line-height:1.3;}
+.day-sat{color:var(--sat)!important;}
+.day-sun,.holiday{color:var(--sun)!important;}
+.cell.day{font-weight:700;font-size:10.5px;white-space:nowrap;}
+.cell.time{font-size:9.5px;color:var(--ink2);font-weight:500;}
+.role-pill{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:5px;display:inline-block;line-height:1.4;white-space:nowrap;color:#fff;}
+.event-tag{display:block;font-size:7.5px;font-weight:700;color:var(--ink2);margin-top:1px;white-space:normal;line-height:1.4;max-width:72px;text-decoration:none;}
+a.event-tag:hover{text-decoration:underline;}
+.fb{display:block;background:var(--ink);color:#f2c230;font-size:7px;font-weight:700;padding:1px 4px;border-radius:6px;margin:1px auto 0;line-height:1.4;width:fit-content;}
+.copy-btn{background:none;border:none;cursor:pointer;font-size:13px;padding:1px;display:flex;align-items:center;justify-content:center;width:100%;margin-top:1px;}
+.cell.copy-cell{display:flex;align-items:center;justify-content:center;}
+.seat-cell{display:flex;flex-direction:column;gap:2px;}
+.seat-input-row{display:flex;gap:2px;}
+.seat-input{flex:1;min-width:0;font-size:8.5px;padding:2px 3px;border:1px solid rgba(29,23,18,0.3);border-radius:5px;
+  background:rgba(255,250,232,0.75);color:var(--ink);font-family:inherit;text-align:center;}
+.seat-input::placeholder{color:#a89470;}
+.seat-input:focus{outline:none;border-color:var(--ink);background:#fffaf0;}
+.seat-ok-btn{flex-shrink:0;background:var(--ink);color:#f2c230;border:none;border-radius:5px;font-size:9px;font-weight:700;padding:2px 5px;cursor:pointer;font-family:inherit;}
+.seat-tags{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}
+.seat-tag{font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:2px;color:#fff;border:1.5px solid #999;white-space:nowrap;}
+
+/* ---------- counting ---------- */
+.settle-title{text-align:center;font-family:'Black Han Sans',sans-serif;font-size:20px;color:var(--ink);letter-spacing:1px;margin:22px 0 8px;}
+.counting-section{max-width:720px;margin:0 auto;padding:0 10px;}
+.cgl{font-size:10.5px;font-weight:700;color:var(--ink2);text-align:center;letter-spacing:2px;margin:6px 0 3px;}
+.counting-box{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:400px;margin:0 auto 2px;}
+.count-card{border-radius:10px;padding:7px 3px;text-align:center;border:1.5px solid;transition:opacity 0.15s,filter 0.15s;}
+.count-card.dim{opacity:0.3;filter:grayscale(70%);}
+.count-card .cnt-name{font-size:11px;font-weight:900;margin-bottom:2px;color:var(--ink);}
+.count-card .cnt-num{font-size:20px;font-weight:900;line-height:1;color:var(--ink);}
+.count-card .cnt-label{font-size:8px;color:var(--ink2);}
+.cnt-total-box{display:flex;justify-content:center;margin:6px 0;}
+.cnt-total-card{background:var(--ink);border-radius:14px;padding:7px 26px;text-align:center;}
+.cnt-total-card .cnt-name{font-size:11px;font-weight:700;color:#f2c230;margin-bottom:1px;}
+.cnt-total-card .cnt-num{font-size:28px;font-weight:900;color:#f2c230;line-height:1;}
+.cnt-total-card .cnt-label{font-size:10px;color:#e8d9a8;}
+.cnt-total-of{font-size:0.55em;font-weight:500;opacity:0.7;margin-left:1px;}
+
+/* ---------- seat map ---------- */
+.seat-map-section{max-width:720px;margin:14px auto 0;background:#f7e6b5;border-radius:14px;padding:14px 8px 16px;
+  border:1px solid rgba(29,23,18,0.2);--s:16px;--gap:1.5px;}
+#captureArea{padding-top:16px;}
+.seat-map-title{text-align:center;font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px;letter-spacing:1px;}
+.map-scroll{overflow:hidden;display:flex;justify-content:center;}
+.map-grid{display:grid;gap:var(--gap);width:max-content;
+  grid-template-columns:var(--s) 6px var(--s) repeat(21,var(--s)) var(--s) 6px var(--s);
+  grid-template-rows:repeat(11,var(--s)) 8px repeat(12,var(--s)) 14px repeat(3,var(--s));}
+.stage-bg{background:#cfcbc2;border-radius:3px;}
+.stage-label{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;letter-spacing:3px;color:var(--ink);}
+.row-label{font-size:8px;font-weight:700;color:var(--ink2);display:flex;align-items:center;justify-content:center;}
+.floor-label{font-family:'Libre Caslon Text',serif;font-size:9px;font-weight:700;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+.seat{width:var(--s);height:var(--s);font-size:7px;border-radius:3px;font-weight:800;display:flex;align-items:center;justify-content:center;border:1px solid;}
+.c-gen{background:#e6dbef;color:#4b3a5c;border-color:#c4b2d4;}
+.c-table{background:#d6e7f5;color:#264a6b;border-color:#a9c8e4;}
+.c-stool{background:#d6ecda;color:#2a5a33;border-color:#a8d0b0;}
+.c-line{background:#f6dbe8;color:#7a2a50;border-color:#e3afc8;}
+.c-bal{background:#f5e0c2;color:#7a4e14;border-color:#e0bf8e;}
+.seat.hold{background:#d9d5cd;color:#8a8378;border:1px dashed #a8a194;}
+.seat.mk1{background:#c23b4a!important;color:#fff!important;border:1px solid #8f2735!important;}
+.seat.mk2{background:#3a72c2!important;color:#fff!important;border:1px solid #204d8f!important;}
+.seat.mk3{background:#d98a2e!important;color:#fff!important;border:1px solid #a4671c!important;}
+.seat.mk4{background:#7a4ec2!important;color:#fff!important;border:1px solid #54338f!important;}
+.seat.mk5{background:#1d1712!important;color:#f2c230!important;border:1px solid #000!important;}
+.seat-legend,.cat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;margin-top:10px;font-size:10.5px;}
+.cat-legend{font-size:9.5px;margin-top:12px;}
+.seat-legend-item{display:flex;align-items:center;gap:4px;color:var(--ink2);}
+.seat-legend-dot{width:11px;height:11px;border-radius:2px;display:inline-block;border:1px solid rgba(0,0,0,0.2);}
+
+.bottom-btns{max-width:720px;margin:10px auto 4px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.bbtn{padding:6px 16px;background:rgba(255,246,214,0.6);border:1px solid rgba(29,23,18,0.3);border-radius:20px;font-size:11px;font-weight:700;
+  color:var(--ink);cursor:pointer;font-family:inherit;text-decoration:none;}
+.bbtn:disabled{opacity:0.6;cursor:wait;}
+.footer{text-align:center;font-size:10px;color:var(--ink2);margin-top:16px;line-height:1.8;padding:0 20px;}
+.footer b{color:var(--ink);}
+
+@media(min-width:768px){
+  .title-en{font-size:40px;}
+  .title-kr{font-size:72px;}
+  .fb2{font-size:12.5px;padding:6px 16px;}
+  .fgl,.cgl{font-size:12px;}
+  .table-header,.row{grid-template-columns:86px 36px 56px repeat(var(--nroles,1),1fr) 110px 26px;gap:4px;}
+  .row{padding:8px 10px;}
+  .table-header{padding:9px 10px;}
+  .th{font-size:13px;}
+  .th-hint{font-size:9px;}
+  .cell{font-size:13px;}.cell.date,.cell.day{font-size:13.5px;}.cell.time{font-size:12px;}
+  .role-pill{font-size:13px;padding:2px 8px;}
+  .event-tag{font-size:9px;max-width:none;}
+  .fb{font-size:8.5px;}
+  .seat-input{font-size:10.5px;padding:3px 5px;}
+  .count-card .cnt-name{font-size:12px;}.count-card .cnt-num{font-size:25px;}
+  .cnt-total-card .cnt-num{font-size:34px;}
+  .seat-map-section{--s:22px;--gap:2px;}
+  .seat{font-size:9px;}
+  .row-label{font-size:10px;}
+  .stage-label{font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="presents">PLAY</div>
+  <div class="title-en">Numéro Deux</div>
+  <div class="title-kr">두 번째 아이</div>
+  <div class="title-sub">based on <i>Numéro Deux</i> by David Foenkinos</div>
+  <div class="hero-meta"><b>2026.12.8(TUE) – 2027.3.28(SUN)</b><br>LG아트센터 서울 U+ 스테이지</div>
+  <div class="ticket-row" id="ticketRow"></div>
+  <div class="info-row" id="infoRow"></div>
+  <div class="notice-badge">📢 1차 티켓오픈 11/6(금) 14:00 · 현재 1차 캐스트(김지온·손우현·정택운) 12/8~12/27 스케줄이 공개됐어요</div>
+</div>
+
+<div class="content">
+
+<div class="section-title">CASTING SCHEDULE<span class="kr">출연 일정</span></div>
+
+<div class="pin-bar" id="pinBar"></div>
+<div class="filter-section" id="filterSection"></div>
+<div class="count-info" id="countInfo"></div>
+<div class="input-help">좌석 입력 · 일반석 <b>E-9</b> · 무대 테이블석 <b>테이블-3</b> · 바 스툴석 <b>스툴-2</b> · 무대 일렬석 <b>일렬-4</b> · 발코니 <b>좌발-5</b> / <b>우발-5</b></div>
+
+<div class="table-wrap" id="tableWrap"></div>
+
+<div id="captureArea">
+  <div class="settle-title">두 번째 아이 정산</div>
+  <div class="counting-section" id="countingSection"></div>
+  <div class="seat-map-section">
+    <div class="seat-map-title">내 좌석 정산</div>
+    <div class="map-scroll" id="mapScroll"><div class="map-grid" id="mapGrid"></div></div>
+    <div class="cat-legend">
+      <span class="seat-legend-item"><span class="seat-legend-dot c-gen"></span>일반석</span>
+      <span class="seat-legend-item"><span class="seat-legend-dot c-table"></span>무대 테이블석</span>
+      <span class="seat-legend-item"><span class="seat-legend-dot c-stool"></span>무대 바 스툴석</span>
+      <span class="seat-legend-item"><span class="seat-legend-dot c-line"></span>무대 일렬석</span>
+      <span class="seat-legend-item"><span class="seat-legend-dot c-bal"></span>발코니석</span>
+      <span class="seat-legend-item"><span class="seat-legend-dot" style="background:#d9d5cd;border:1px dashed #a8a194;"></span>판매보류석</span>
+    </div>
+    <div class="seat-legend" id="seatLegend"></div>
+  </div>
+</div>
+
+<div class="bottom-btns" style="margin-top:16px;">
+  <button class="bbtn" onclick="exportData()">💾 내 데이터 저장</button>
+  <label class="bbtn">📂 데이터 불러오기<input type="file" accept=".json" onchange="importData(event)" style="display:none;"></label>
+</div>
+<div class="bottom-btns">
+  <a class="bbtn" href="https://chichiandpopo.github.io/stage_archive/" target="_blank">🎭 관극 아카이브</a>
+  <button class="bbtn" onclick="saveSettleImage(this)">🖼️ 정산판 저장</button>
+</div>
+
+<div class="footer">
+  <b>두 번째 아이</b> 팬메이드 비공식 관람 기록 사이트<br>
+  캐스팅은 제작사 및 배우 사정에 의해 변경될 수 있어요.<br>
+  데이터는 브라우저(localStorage)에만 저장되며 서버로 전송되지 않습니다.
+</div>
+
+</div>
+
+<script>
+/* =====================================================================
+   ✏️ 여기만 고치면 돼요
+   ===================================================================== */
+const SHOW_TITLE='두 번째 아이';
+const STORE_SEATS='numerodeux_seats_v1';
+const STORE_PIN='numerodeux_pin_v1';
+
+/* 링크: url이 비어 있으면 버튼이 숨겨져요 */
+const LINKS={
+  ticket:[
+    {label:'🎟 티켓링크',url:''},
+    {label:'🎟 예스24티켓',url:''},
+    {label:'🎟 NOL티켓',url:''},
+    {label:'🎟 LG아트센터',url:'https://www.lgart.com'},
+  ],
+  info:[
+    {label:'🪑 좌석 배치도',url:''},
+    {label:'𝕏 공식 트위터',url:''},
+  ],
+};
+
+/* 배역군: 배역이 늘어나면 여기에 추가하고, 스케줄 줄에도 이름을 같은 순서로 추가 */
+const ROLES=[
+  {attr:'cast',label:'출연',groups:[
+    {label:'1차 캐스트',keys:['gimjion','sonwoohyun','jungtaekwoon']},
+    {label:'2차 캐스트',keys:['jumingjin','jeonsungwoo','junghwi']},
+  ]},
+];
+const ACTOR={gimjion:'김지온',sonwoohyun:'손우현',jungtaekwoon:'정택운',jumingjin:'주민진',jeonsungwoo:'전성우',junghwi:'정휘'};
+const ACTOR_COLOR={gimjion:'#9a3412',sonwoohyun:'#1e3a8a',jungtaekwoon:'#166534',jumingjin:'#6b21a8',jeonsungwoo:'#0f766e',junghwi:'#7c2d12'};
+
+/* 공휴일 (빨간 날짜 표시). 2027 설 연휴 등은 확정 후 추가 */
+const HOLIDAYS=['2026-12-25','2027-01-01'];
+
+/* 스케줄: 날짜 시간 배우이름  | 이벤트이름@링크, 이벤트이름2
+   - 공연 없는 날은 자동으로 "공연 없음" 표시
+   - 배우별 첫 출연 회차에 "첫공" 자동 표시 */
+const SCHEDULE_TEXT=`
+2026-12-08 20:00 김지온
+2026-12-09 20:00 손우현
+2026-12-10 20:00 정택운
+2026-12-11 20:00 김지온
+2026-12-12 15:00 손우현
+2026-12-12 19:00 정택운
+2026-12-13 14:00 김지온
+2026-12-13 18:00 정택운
+2026-12-15 20:00 손우현
+2026-12-16 16:00 정택운
+2026-12-16 20:00 김지온
+2026-12-17 20:00 손우현
+2026-12-18 20:00 정택운
+2026-12-19 15:00 김지온
+2026-12-19 19:00 손우현
+2026-12-20 14:00 정택운
+2026-12-20 18:00 김지온
+2026-12-22 20:00 손우현
+2026-12-23 16:00 정택운
+2026-12-23 20:00 김지온
+2026-12-24 20:00 손우현
+2026-12-25 14:00 김지온
+2026-12-25 18:00 손우현
+2026-12-26 15:00 손우현
+2026-12-26 19:00 정택운
+2026-12-27 14:00 김지온
+2026-12-27 18:00 정택운
+`;
+
+/* 좌석 배치 (LG아트센터 서울 U+ 스테이지 · 두 번째 아이 SEAT PLAN 기준) */
+const SEATPLAN={
+  tables:32, tableHold:[18,20],          // 무대 테이블석 1~32
+  stools:18,                             // 무대 바 스툴석 1~18
+  line:10,                               // 무대 일렬석 1~10
+  balcony:12, balconyHold:[1,2,3],       // 좌/우 발코니 1~12
+  floor1:{                               // 1층 일반석
+    E:{from:2,to:20,hold:[2,3]},
+    F:{from:1,to:21,skip:[16]}, G:{from:1,to:21},
+    H:{from:1,to:21,skip:[16]}, I:{from:1,to:21},
+    J:{from:1,to:21,skip:[16]}, K:{from:1,to:21},
+    L:{from:1,to:21,skip:[16]}, M:{from:1,to:21},
+    N:{from:1,to:21,skip:[16]},
+  },
+  floor2:{O:{from:1,to:21},P:{from:3,to:20},Q:{from:3,to:19}},
+};
+/* ===================================================================== */
+
+const ROLE_ATTRS=ROLES.map(r=>r.attr);
+ROLES.forEach(r=>{if(!r.groups)r.groups=[{label:r.label,keys:r.keys}];r.keys=r.groups.flatMap(g=>g.keys);});
+const ROLE_KEYS=Object.fromEntries(ROLES.map(r=>[r.attr,r.keys]));
+const ALL_KEYS=ROLES.flatMap(r=>r.keys);
+const NAME2KEY=Object.fromEntries(Object.entries(ACTOR).map(([k,v])=>[v,k]));
+const DOW=['일','월','화','수','목','금','토'];
+
+function store(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function load(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function unstore(k){try{localStorage.removeItem(k);}catch(e){}}
+function rgba(hex,a){const n=parseInt(hex.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`;}
+function pad(n){return String(n).padStart(2,'0');}
+function ymd(dt){return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());}
+
+/* ---------- parse schedule ---------- */
+const SHOWS=SCHEDULE_TEXT.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#')).map(l=>{
+  const bar=l.indexOf('|');
+  const main=bar>-1?l.slice(0,bar):l, ev=bar>-1?l.slice(bar+1):'';
+  const tk=main.trim().split(/\s+/);
+  const s={date:tk[0],time:tk[1],cast:{},events:[],first:{}};
+  ROLES.forEach((r,i)=>{s.cast[r.attr]=NAME2KEY[tk[2+i]]||tk[2+i];});
+  s.events=ev.split(',').map(x=>x.trim()).filter(Boolean).map(x=>{
+    const at=x.indexOf('@');return at>-1?{label:x.slice(0,at).trim(),url:x.slice(at+1).trim()}:{label:x,url:''};
+  });
+  const [y,m,d]=s.date.split('-').map(Number);
+  Object.assign(s,{y,m,d,dow:new Date(y,m-1,d).getDay()});
+  s.sid=String(y).slice(2)+pad(m)+pad(d)+'-'+s.time.replace(':','');
+  return s;
+}).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+
+const seenFirst={};
+SHOWS.forEach(s=>ROLE_ATTRS.forEach(a=>{const k=s.cast[a];if(!seenFirst[a+k]){seenFirst[a+k]=1;s.first[a]=true;}}));
+
+const SHOW_INFO={}, SHOW_BY_SID={};
+SHOWS.forEach(s=>{SHOW_INFO[s.sid]=s.cast;SHOW_BY_SID[s.sid]=s;});
+
+function dayCls(s){
+  if(HOLIDAYS.includes(s.date))return 'holiday';
+  if(s.dow===6)return 'day-sat';
+  if(s.dow===0)return 'day-sun';
+  return 'day-wkd';
+}
+
+/* ---------- dynamic styles ---------- */
+(function(){
+  const st=document.createElement('style');
+  st.textContent=ALL_KEYS.map(k=>{const c=ACTOR_COLOR[k]||'#4a3d2c';return `
+.btn-${k}{background:${rgba(c,0.12)};color:${c};border-color:${rgba(c,0.45)};}
+.btn-${k}.active{background:${c};color:#fff;border-color:${c};}
+.badge-${k}{background:${c};}
+.row.r-${k}{background:${rgba(c,0.07)};border-left:3px solid ${c};}
+.card-${k}{background:${rgba(c,0.16)};border-color:${c};}`;}).join('');
+  document.head.appendChild(st);
+})();
+
+/* ---------- render header links ---------- */
+function renderLinks(){
+  const mk=(arr,cls)=>arr.filter(x=>x.url).map(x=>`<a href="${x.url}" target="_blank" rel="noopener" class="${cls}">${x.label}</a>`).join('');
+  document.getElementById('ticketRow').innerHTML=mk(LINKS.ticket,'ticket-btn');
+  document.getElementById('infoRow').innerHTML=mk(LINKS.info,'info-btn');
+}
+
+/* ---------- render filters ---------- */
+function renderFilters(){
+  let h=`<div class="filter-group"><div class="fgl">전체</div><div class="filter-row"><button class="fb2 btn-all active" onclick="resetFilter()">전체 보기</button></div></div>`;
+  ROLES.forEach(r=>r.groups.forEach(g=>{
+    const open=g.keys.some(k=>SHOWS.some(s=>s.cast[r.attr]===k));
+    h+=`<div class="filter-group"><div class="fgl">${g.label}${open?'':' <span class="soon">· 스케줄 공개 예정</span>'}</div><div class="filter-row">`+
+      g.keys.map(k=>`<button class="fb2 btn-${k}" data-attr="${r.attr}" data-key="${k}" onclick="toggleFilter('${r.attr}','${k}')">${ACTOR[k]}</button>`).join('')+
+      `</div></div>`;
+  }));
+  document.getElementById('filterSection').innerHTML=h;
+}
+
+/* ---------- render table ---------- */
+function renderTable(){
+  const wrap=document.getElementById('tableWrap');
+  wrap.style.setProperty('--nroles',ROLES.length);
+  let h=`<div class="table-header"><div class="th">날짜</div><div class="th" style="text-align:center;">요일</div><div class="th" style="text-align:center;">시간</div>`+
+    ROLES.map(r=>`<div class="th" style="text-align:center;">${r.label}</div>`).join('')+
+    `<div class="th" style="text-align:center;">좌석<span class="th-hint">예: E-9 / 테이블-3</span></div><div class="th"></div></div>`;
+  if(!SHOWS.length){wrap.innerHTML=h;return;}
+  const byDate={};SHOWS.forEach(s=>{(byDate[s.date]=byDate[s.date]||[]).push(s);});
+  const start=new Date(SHOWS[0].y,SHOWS[0].m-1,SHOWS[0].d);
+  const last=SHOWS[SHOWS.length-1], end=new Date(last.y,last.m-1,last.d);
+  for(let dt=new Date(start);dt<=end;dt.setDate(dt.getDate()+1)){
+    const key=ymd(dt), list=byDate[key];
+    if(!list){h+=`<div class="no-show" data-noshow="1">${dt.getMonth()+1}월 ${dt.getDate()}일 (${DOW[dt.getDay()]}) — 공연 없음</div>`;continue;}
+    list.forEach(s=>{
+      const dc=dayCls(s);
+      const ev=s.events.map(e=>e.url?`<a class="event-tag" href="${e.url}" target="_blank" rel="noopener">${e.label}</a>`:`<span class="event-tag">${e.label}</span>`).join('');
+      h+=`<div class="row r-${s.cast[ROLE_ATTRS[0]]}" data-sid="${s.sid}">`+
+        `<div class="cell date ${dc}">${s.m}월 ${s.d}일${ev}</div>`+
+        `<div class="cell day ${dc}">${DOW[s.dow]}</div>`+
+        `<div class="cell time">${s.time}</div>`+
+        ROLE_ATTRS.map(a=>{const k=s.cast[a];return `<div class="cell"><span class="role-pill badge-${k}">${ACTOR[k]||k}</span>${s.first[a]?'<span class="fb">첫공</span>':''}</div>`;}).join('')+
+        `<div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-${s.sid}" placeholder="E-9"><button onclick="confirmSeat('${s.sid}')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-${s.sid}"></div></div>`+
+        `<div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('${s.sid}')" title="복사">🎤</button></div>`+
+        `</div>`;
+    });
+  }
+  wrap.innerHTML=h;
+}
+
+/* ---------- render counting ---------- */
+function renderCounting(){
+  let h='';
+  ROLES.forEach(r=>r.groups.forEach(g=>{
+    h+=`<div class="cgl">${g.label}</div><div class="counting-box">`+
+      g.keys.map(k=>`<div class="count-card card-${k}"><div class="cnt-name">${ACTOR[k]}</div><div class="cnt-num"><span id="cnt-${k}">0</span><span id="tot-${k}" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>`).join('')+
+      `</div>`;
+  }));
+  h+=`<div class="cnt-total-box"><div class="cnt-total-card"><div class="cnt-name">합계</div><div class="cnt-num"><span id="cnt-total">0</span><span id="tot-total" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div></div>`;
+  document.getElementById('countingSection').innerHTML=h;
+}
+
+/* ================= SEAT MAP ================= */
+/* 키 형식: G-E-5(일반석) / T-5(테이블) / S-3(스툴) / R-4(일렬) / BL-5, BR-5(발코니) */
+const VALID=new Set();
+const COLORS=[
+  {bg:'#c23b4a',label:'1회'},{bg:'#3a72c2',label:'2회'},{bg:'#d98a2e',label:'3회'},
+  {bg:'#7a4ec2',label:'4회'},{bg:'#1d1712',label:'5회 이상'},
+];
+function addSeat(g,key,label,col,row,cat,hold){
+  const s=document.createElement('div');
+  s.className='seat c-'+cat+(hold?' hold':'');
+  s.id='S-'+key;s.textContent=label;s.style.gridColumn=col;s.style.gridRow=row;
+  s.title=seatDisplay(key)+(hold?' (판매보류)':'');
+  g.appendChild(s);VALID.add(key);
+}
+function addText(g,text,cls,col,row){
+  const d=document.createElement('div');d.className=cls;d.textContent=text;
+  d.style.gridColumn=col;d.style.gridRow=row;g.appendChild(d);
+}
+function buildMap(){
+  const g=document.getElementById('mapGrid');g.innerHTML='';VALID.clear();
+  const P=SEATPLAN, C=n=>n+3; // 좌석열 n → grid column
+  // 무대
+  const bg=document.createElement('div');bg.className='stage-bg';bg.style.gridColumn='4 / 25';bg.style.gridRow='1 / 12';g.appendChild(bg);
+  addText(g,'STAGE','stage-label','10 / 16','5 / 7');
+  // 테이블석: 2x2 블록, 왼쪽 열(1~16) / 오른쪽 열(17~32)
+  [0,3,6,9].forEach((r0,k)=>{
+    [[1,0],[2,0],[1,1],[2,1]].forEach(([c,dr],i)=>{
+      const nL=4*k+i+1, nR=16+nL;
+      if(nL<=P.tables)addSeat(g,'T-'+nL,nL,C(c),r0+dr+1,'table',P.tableHold.includes(nL));
+      if(nR<=P.tables)addSeat(g,'T-'+nR,nR,C(c+4),r0+dr+1,'table',P.tableHold.includes(nR));
+    });
+  });
+  // 바 스툴석
+  for(let n=1;n<=6;n++)addSeat(g,'S-'+n,n,C(15),n+2,'stool');
+  for(let n=7;n<=11;n++)addSeat(g,'S-'+n,n,C(17),n-4,'stool');
+  [12,13,14].forEach((n,i)=>addSeat(g,'S-'+n,n,C(18+i),8,'stool'));
+  [15,16,17,18].forEach((n,i)=>addSeat(g,'S-'+n,n,C(16+i),10,'stool'));
+  // 무대 일렬석 (E열 5~14번 앞)
+  for(let n=1;n<=P.line;n++)addSeat(g,'R-'+n,n,C(n+4),14,'line');
+  // 발코니
+  for(let n=1;n<=P.balcony;n++){
+    const hold=P.balconyHold.includes(n);
+    addSeat(g,'BL-'+n,n,1,12+n,'bal',hold);
+    addSeat(g,'BR-'+n,n,27,12+n,'bal',hold);
+  }
+  // 1층
+  Object.keys(P.floor1).forEach((L,i)=>{
+    const r=15+i, cfg=P.floor1[L];
+    addText(g,L,'row-label',3,r);addText(g,L,'row-label',25,r);
+    for(let n=cfg.from;n<=cfg.to;n++){
+      if((cfg.skip||[]).includes(n))continue;
+      addSeat(g,'G-'+L+'-'+n,n,C(n),r,'gen',(cfg.hold||[]).includes(n));
+    }
+  });
+  // 2층
+  addText(g,'2F','floor-label','1 / 3','26 / 29');
+  Object.keys(P.floor2).forEach((L,i)=>{
+    const r=26+i, cfg=P.floor2[L];
+    addText(g,L,'row-label',3,r);addText(g,L,'row-label',25,r);
+    for(let n=cfg.from;n<=cfg.to;n++)addSeat(g,'G-'+L+'-'+n,n,C(n),r,'gen',(cfg.hold||[]).includes(n));
+  });
+  fitSeatMap();
+}
+function fitSeatMap(){
+  const section=document.querySelector('.seat-map-section');
+  const wrap=document.getElementById('mapScroll'), grid=document.getElementById('mapGrid');
+  if(!section||!wrap||!grid)return;
+  grid.style.transform='none';wrap.style.height='';
+  const cs=getComputedStyle(section);
+  const avail=section.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);
+  const w=grid.scrollWidth, h=grid.scrollHeight;
+  if(w>avail&&w>0){
+    const sc=avail/w;
+    grid.style.transformOrigin='top center';grid.style.transform='scale('+sc+')';
+    wrap.style.height=Math.ceil(h*sc)+'px';
+  }
+}
+window.addEventListener('resize',fitSeatMap);
+window.addEventListener('load',fitSeatMap);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitSeatMap).catch(()=>{});
+
+function parseSeat(val){
+  const v=val.trim().toUpperCase().replace(/\s+/g,'').replace(/번|석|열/g,'').replace(/[_.·]/g,'-');
+  let m, key=null;
+  if((m=v.match(/^(테이블|테|TB|T)-?(\d{1,2})$/)))key='T-'+parseInt(m[2]);
+  else if((m=v.match(/^(바스툴|스툴|바|ST|S)-?(\d{1,2})$/)))key='S-'+parseInt(m[2]);
+  else if((m=v.match(/^(무대일렬|일렬|R)-?(\d{1,2})$/)))key='R-'+parseInt(m[2]);
+  else if((m=v.match(/^(좌측발코니|좌발코니|발코니좌|좌발|좌|BL)-?(\d{1,2})$/)))key='BL-'+parseInt(m[2]);
+  else if((m=v.match(/^(우측발코니|우발코니|발코니우|우발|우|BR)-?(\d{1,2})$/)))key='BR-'+parseInt(m[2]);
+  else if((m=v.match(/^([E-Q])-?(\d{1,2})$/)))key='G-'+m[1]+'-'+parseInt(m[2]);
+  return key&&VALID.has(key)?key:null;
+}
+function seatDisplay(key){
+  const p=key.split('-');
+  switch(p[0]){
+    case 'G':return p[1]+'-'+p[2];
+    case 'T':return '테이블 '+p[1];
+    case 'S':return '스툴 '+p[1];
+    case 'R':return '일렬 '+p[1];
+    case 'BL':return '좌발 '+p[1];
+    case 'BR':return '우발 '+p[1];
+  }
+  return key;
+}
+
+/* ================= STATE ================= */
+let showSeats={};
+try{showSeats=JSON.parse(load(STORE_SEATS)||'{}')||{};}catch(e){showSeats={};}
+let focusedId=null;
+function saveSeats(){store(STORE_SEATS,JSON.stringify(showSeats));}
+
+let sel=Object.fromEntries(ROLE_ATTRS.map(a=>[a,[]]));
+let pinnedSel=null;
+try{pinnedSel=JSON.parse(load(STORE_PIN)||'null');}catch(e){pinnedSel=null;}
+if(pinnedSel)ROLE_ATTRS.forEach(a=>{if(!Array.isArray(pinnedSel[a]))pinnedSel[a]=pinnedSel[a]?[pinnedSel[a]]:[];});
+
+function isAllEmpty(s){return ROLE_ATTRS.every(a=>!s[a]||s[a].length===0);}
+function matchSel(info){return ROLE_ATTRS.every(a=>!sel[a].length||sel[a].includes(info[a]));}
+function sameSel(a,b){return ROLE_ATTRS.every(at=>{const x=[...(a[at]||[])].sort(),y=[...(b[at]||[])].sort();return x.length===y.length&&x.every((v,i)=>v===y[i]);});}
+function selLabel(s){return ROLE_ATTRS.filter(a=>(s[a]||[]).length).map(a=>s[a].map(v=>ACTOR[v]).join('·')).join(' · ');}
+
+/* ================= COUNTING ================= */
+function updateCounting(){
+  const cnt={},tot={};ALL_KEYS.forEach(k=>{cnt[k]=0;tot[k]=0;});
+  let total=0,totTotal=0;const isAll=isAllEmpty(sel);
+  SHOWS.forEach(s=>{
+    if(!isAll&&!matchSel(s.cast))return;
+    ROLE_ATTRS.forEach(a=>{tot[s.cast[a]]=(tot[s.cast[a]]||0)+1;});totTotal++;
+    if((showSeats[s.sid]||[]).length){ROLE_ATTRS.forEach(a=>{cnt[s.cast[a]]=(cnt[s.cast[a]]||0)+1;});total++;}
+  });
+  ALL_KEYS.forEach(k=>{
+    const c=document.getElementById('cnt-'+k);if(c)c.textContent=cnt[k]||0;
+    const t=document.getElementById('tot-'+k);if(t)t.textContent='/'+(tot[k]||0);
+  });
+  document.getElementById('cnt-total').textContent=total;
+  document.getElementById('tot-total').textContent='/'+totTotal;
+}
+function updateCountingDim(){
+  ROLE_ATTRS.forEach(a=>ROLE_KEYS[a].forEach(k=>{
+    const card=document.querySelector('.card-'+k);if(!card)return;
+    card.classList.toggle('dim',sel[a].length>0&&!sel[a].includes(k));
+  }));
+}
+
+/* ================= MAP UPDATE ================= */
+function updateMap(){
+  document.querySelectorAll('.seat').forEach(el=>{el.className=el.className.replace(/\bmk\d\b/g,'').trim();});
+  const cnt={};const isAll=isAllEmpty(sel);
+  Object.keys(showSeats).forEach(sid=>{
+    if(!(showSeats[sid]||[]).length||!SHOW_INFO[sid])return;
+    if(!isAll&&!matchSel(SHOW_INFO[sid]))return;
+    showSeats[sid].forEach(s=>{cnt[s]=(cnt[s]||0)+1;});
+  });
+  Object.keys(cnt).forEach(key=>{
+    const el=document.getElementById('S-'+key);
+    if(el){el.classList.add('mk'+Math.min(cnt[key],5));el.title=seatDisplay(key)+' ('+cnt[key]+'회)';}
+  });
+  const lg=document.getElementById('seatLegend');
+  const max=Math.max(0,...Object.values(cnt));
+  if(max===0){lg.innerHTML='<span style="font-size:11px;color:#8a7552;">좌석을 입력하면 여기에 표시됩니다</span>';return;}
+  lg.innerHTML='';
+  for(let i=1;i<=Math.min(max,5);i++){
+    const c=COLORS[i-1];
+    lg.insertAdjacentHTML('beforeend',`<div class="seat-legend-item"><div class="seat-legend-dot" style="background:${c.bg}"></div>${c.label}</div>`);
+  }
+}
+
+/* ================= SEAT INPUT ================= */
+function confirmFocused(){
+  if(!focusedId)return;
+  const input=document.getElementById('inp-'+focusedId);if(!input||!input.value.trim())return;
+  const key=parseSeat(input.value);
+  if(!key){input.style.borderColor='#c23b4a';setTimeout(()=>input.style.borderColor='',1000);return;}
+  if(!showSeats[focusedId])showSeats[focusedId]=[];
+  if(!showSeats[focusedId].includes(key)){showSeats[focusedId].push(key);renderTags(focusedId);updateMap();saveSeats();updateCounting();}
+  input.value='';input.style.borderColor='';
+}
+function confirmSeat(sid){focusedId=sid;confirmFocused();}
+function removeSeat(sid,key){showSeats[sid]=(showSeats[sid]||[]).filter(s=>s!==key);renderTags(sid);updateMap();saveSeats();updateCounting();}
+function renderTags(sid){
+  const el=document.getElementById('tags-'+sid);if(!el)return;el.innerHTML='';
+  const input=document.getElementById('inp-'+sid);const btn=input?input.nextElementSibling:null;
+  const cnt={};Object.values(showSeats).forEach(seats=>(seats||[]).forEach(s=>{cnt[s]=(cnt[s]||0)+1;}));
+  const seats=showSeats[sid]||[];
+  if(input)input.style.display=seats.length?'none':'';
+  if(btn)btn.style.display=seats.length?'none':'';
+  seats.forEach(key=>{
+    const c=COLORS[Math.min(cnt[key]||1,5)-1];
+    const tag=document.createElement('span');tag.className='seat-tag';
+    tag.style.background=c.bg;tag.style.borderColor=c.bg;
+    tag.innerHTML=seatDisplay(key)+' <span style="font-size:7px;opacity:0.8">×</span>';
+    tag.onclick=()=>removeSeat(sid,key);el.appendChild(tag);
+  });
+}
+
+/* ================= COPY ================= */
+function showCopyFallbackModal(text){
+  const old=document.getElementById('copyFallbackModal');if(old)old.remove();
+  const ov=document.createElement('div');ov.id='copyFallbackModal';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  ov.innerHTML=`<div style="background:#f7e6b5;border:1px solid #1d1712;border-radius:14px;padding:16px;max-width:340px;width:100%;">
+    <div style="color:#1d1712;font-size:12.5px;font-weight:700;margin-bottom:10px;line-height:1.5;">자동 복사가 안 돼요. 아래 내용을 길게 눌러서 직접 복사해주세요.</div>
+    <textarea readonly style="width:100%;height:100px;padding:8px;border-radius:8px;border:1px solid rgba(29,23,18,0.3);background:#fffaf0;color:#1d1712;font-size:13px;font-family:inherit;resize:none;"></textarea>
+    <button style="margin-top:10px;width:100%;padding:8px;border:none;border-radius:8px;background:#1d1712;color:#f2c230;font-weight:700;font-size:13px;cursor:pointer;">닫기</button></div>`;
+  const ta=ov.querySelector('textarea');ta.value=text;
+  ov.querySelector('button').onclick=()=>ov.remove();
+  ov.onclick=e=>{if(e.target===ov)ov.remove();};
+  document.body.appendChild(ov);ta.focus();ta.select();
+}
+function copyText(text,btn){
+  const ok=()=>{if(btn){btn.textContent='✅';setTimeout(()=>{btn.textContent='🎤';},1500);}};
+  const legacy=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px;';
+    document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,text.length);
+    const r=document.execCommand('copy');document.body.removeChild(ta);if(r){ok();return true;}}catch(e){}return false;};
+  const fail=()=>{if(btn){btn.textContent='⚠️';setTimeout(()=>btn.textContent='🎤',1500);}showCopyFallbackModal(text);};
+  if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){
+    navigator.clipboard.writeText(text).then(ok).catch(()=>{if(!legacy())fail();});
+  }else if(!legacy())fail();
+}
+function copyCast(sid){
+  const s=SHOW_BY_SID[sid];if(!s)return;
+  let text=`${SHOW_TITLE}\n${s.m}/${s.d} ${DOW[s.dow]} ${s.time}\n${ROLE_ATTRS.map(a=>ACTOR[s.cast[a]]||s.cast[a]).join(' ')}`;
+  const tags=[...(ROLE_ATTRS.some(a=>s.first[a])?['첫공']:[]),...s.events.map(e=>e.label)];
+  if(tags.length)text+='\n'+tags.join(', ');
+  copyText(text,document.querySelector(`.row[data-sid="${sid}"] .copy-btn`));
+}
+
+/* ================= FILTER ================= */
+function toggleFilter(attr,val){const arr=sel[attr];const i=arr.indexOf(val);if(i>-1)arr.splice(i,1);else arr.push(val);applyFilter();}
+function resetFilter(){ROLE_ATTRS.forEach(a=>{sel[a]=[];});applyFilter();}
+function applyFilter(){
+  const isAll=isAllEmpty(sel);
+  document.querySelectorAll('.fb2').forEach(b=>{
+    b.classList.remove('active','pinned');
+    const a=b.dataset.attr,k=b.dataset.key;if(!a)return;
+    if(sel[a].includes(k))b.classList.add('active');
+    if(pinnedSel&&(pinnedSel[a]||[]).includes(k))b.classList.add('pinned');
+  });
+  if(isAll)document.querySelector('.btn-all').classList.add('active');
+  const rows=document.querySelectorAll('.row[data-sid]');
+  rows.forEach(r=>r.classList.toggle('hidden',!matchSel(SHOW_INFO[r.dataset.sid])));
+  document.querySelectorAll('[data-noshow]').forEach(el=>el.style.display=isAll?'':'none');
+  const visible=[...rows].filter(r=>!r.classList.contains('hidden')).length;
+  document.getElementById('countInfo').textContent=(isAll?'전체':selLabel(sel))+' '+visible+'회';
+  updateCounting();updateCountingDim();updateMap();renderPinBar();
+}
+function renderPinBar(){
+  const bar=document.getElementById('pinBar');const isAll=isAllEmpty(sel);
+  const isPinned=pinnedSel&&sameSel(sel,pinnedSel);let h='';
+  if(pinnedSel&&!isAllEmpty(pinnedSel)){
+    h+=`<span class="pin-status"><span class="pin-dot"></span>📌 ${selLabel(pinnedSel)} 고정 중</span><button class="pin-btn pin-btn-clear" onclick="clearPin()">고정 해제</button>`;
+  }
+  if(!isAll&&!isPinned)h+=`<button class="pin-btn pin-btn-set" onclick="setPin()">📌 ${selLabel(sel)} 고정하기</button>`;
+  bar.innerHTML=h||'<span class="pin-hint">배우를 선택하고 📌 고정하면 다음 접속 때도 유지돼요</span>';
+}
+function setPin(){pinnedSel={};ROLE_ATTRS.forEach(a=>{pinnedSel[a]=[...sel[a]];});store(STORE_PIN,JSON.stringify(pinnedSel));applyFilter();}
+function clearPin(){pinnedSel=null;unstore(STORE_PIN);applyFilter();}
+
+/* ================= SAVE / LOAD ================= */
+function exportData(){
+  const data=SHOWS.map(s=>{
+    const item={sid:s.sid,date:`${s.m}월 ${s.d}일`,day:DOW[s.dow],time:s.time,seats:showSeats[s.sid]||[]};
+    ROLE_ATTRS.forEach(a=>{item[a]=ACTOR[s.cast[a]]||s.cast[a];});return item;
+  });
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='두번째아이_내좌석.json';a.click();URL.revokeObjectURL(url);
+}
+function importData(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(Array.isArray(data))data.forEach(it=>{if(it&&it.sid)showSeats[it.sid]=it.seats||[];});
+      else Object.keys(data).forEach(sid=>{showSeats[sid]=data[sid];});
+      saveSeats();SHOWS.forEach(s=>renderTags(s.sid));updateMap();updateCounting();
+      alert('데이터를 불러왔어요! 🎉');
+    }catch(err){alert('파일을 읽을 수 없어요 ㅠㅠ');}
+  };
+  reader.readAsText(file);e.target.value='';
+}
+function saveSettleImage(btn){
+  const target=document.getElementById('captureArea');
+  if(typeof html2canvas==='undefined'){alert('이미지 저장 기능을 불러오지 못했어요. 새로고침 후 다시 시도해주세요.');return;}
+  const orig=btn.textContent;btn.disabled=true;btn.textContent='저장 중...';
+  html2canvas(target,{backgroundColor:'#ebb517',scale:Math.min(2,window.devicePixelRatio||2),useCORS:true}).then(canvas=>{
+    const a=document.createElement('a');const t=new Date();
+    a.href=canvas.toDataURL('image/jpeg',0.92);
+    a.download='두번째아이_정산판_'+t.getFullYear()+pad(t.getMonth()+1)+pad(t.getDate())+'.jpg';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+  }).catch(err=>{console.error(err);alert('이미지 저장에 실패했어요 ㅠㅠ 다시 시도해주세요.');})
+  .finally(()=>{btn.disabled=false;btn.textContent=orig;});
+}
+
+/* ================= INIT ================= */
+renderLinks();renderFilters();renderTable();renderCounting();buildMap();
+document.querySelectorAll('.seat-input').forEach(inp=>{
+  inp.addEventListener('focus',()=>{focusedId=inp.id.replace('inp-','');});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();confirmFocused();}});
+});
+SHOWS.forEach(s=>renderTags(s.sid));
+if(pinnedSel)ROLE_ATTRS.forEach(a=>{sel[a]=(pinnedSel[a]||[]).filter(k=>ROLE_KEYS[a].includes(k));});
+applyFilter();
+</script>
+</body>
+</html>
