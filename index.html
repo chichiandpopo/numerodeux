@@ -185,7 +185,6 @@ a.event-tag:hover{text-decoration:underline;}
   <div class="hero-meta"><b>2026.12.8(TUE) – 2027.3.28(SUN)</b><br>LG아트센터 서울 U+ 스테이지</div>
   <div class="ticket-row" id="ticketRow"></div>
   <div class="info-row" id="infoRow"></div>
-  <div class="notice-badge">📢 1차 티켓오픈 11/6(금) 14:00 · 현재 1차 캐스트(김지온·손우현·정택운) 12/8~12/27 스케줄이 공개됐어요</div>
 </div>
 
 <div class="content">
@@ -245,14 +244,15 @@ const STORE_PIN='numerodeux_pin_v1';
 /* 링크: url이 비어 있으면 버튼이 숨겨져요 */
 const LINKS={
   ticket:[
-    {label:'🎟 티켓링크',url:''},
-    {label:'🎟 예스24티켓',url:''},
-    {label:'🎟 NOL티켓',url:''},
+    /* 11/6 티켓오픈 후 각 예매처 상품 페이지 주소로 교체 */
     {label:'🎟 LG아트센터',url:'https://www.lgart.com'},
+    {label:'🎟 티켓링크',url:'https://www.ticketlink.co.kr'},
+    {label:'🎟 YES24',url:'http://ticket.yes24.com'},
+    {label:'🎟 NOL티켓',url:'https://tickets.interpark.com'},
   ],
   info:[
     {label:'🪑 좌석 배치도',url:''},
-    {label:'𝕏 공식 트위터',url:''},
+    {label:'𝕏 공식 트위터',url:'https://x.com/mbz_numerodeux'},
   ],
 };
 
@@ -260,7 +260,7 @@ const LINKS={
 const ROLES=[
   {attr:'cast',label:'출연',groups:[
     {label:'1차 캐스트',keys:['gimjion','sonwoohyun','jungtaekwoon']},
-    {label:'2차 캐스트',keys:['jumingjin','jeonsungwoo','junghwi']},
+    {label:'2차 캐스트 (2월초~)',keys:['jumingjin','jeonsungwoo','junghwi']},
   ]},
 ];
 const ACTOR={gimjion:'김지온',sonwoohyun:'손우현',jungtaekwoon:'정택운',jumingjin:'주민진',jeonsungwoo:'전성우',junghwi:'정휘'};
@@ -386,8 +386,7 @@ function renderLinks(){
 function renderFilters(){
   let h=`<div class="filter-group"><div class="fgl">전체</div><div class="filter-row"><button class="fb2 btn-all active" onclick="resetFilter()">전체 보기</button></div></div>`;
   ROLES.forEach(r=>r.groups.forEach(g=>{
-    const open=g.keys.some(k=>SHOWS.some(s=>s.cast[r.attr]===k));
-    h+=`<div class="filter-group"><div class="fgl">${g.label}${open?'':' <span class="soon">· 스케줄 공개 예정</span>'}</div><div class="filter-row">`+
+    h+=`<div class="filter-group"><div class="fgl">${g.label}</div><div class="filter-row">`+
       g.keys.map(k=>`<button class="fb2 btn-${k}" data-attr="${r.attr}" data-key="${k}" onclick="toggleFilter('${r.attr}','${k}')">${ACTOR[k]}</button>`).join('')+
       `</div></div>`;
   }));
