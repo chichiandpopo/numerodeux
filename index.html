@@ -28,6 +28,8 @@ body{font-family:'Noto Sans KR',sans-serif;color:var(--ink);
 .title-sub{font-family:'Libre Caslon Text',serif;font-size:11.5px;color:var(--ink2);margin-bottom:14px;}
 .hero-meta{font-size:12px;color:var(--ink);letter-spacing:0.3px;margin-bottom:14px;line-height:1.85;}
 .hero-meta b{font-weight:900;}
+.period{display:inline-flex;flex-direction:column;gap:3px;margin:-4px auto 14px;font-size:11.5px;font-weight:500;color:var(--ink);text-align:left;}
+.period-tag{display:inline-block;min-width:30px;margin-right:6px;padding:0 6px;border:1px solid var(--ink);border-radius:8px;font-size:10px;font-weight:700;text-align:center;}
 .ticket-row,.info-row{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;}
 .info-row{margin-top:8px;}
 .ticket-btn{display:inline-block;padding:6px 14px;background:var(--ink);border:1px solid var(--ink);
@@ -183,6 +185,10 @@ a.event-tag:hover{text-decoration:underline;}
   <div class="title-kr">두 번째 아이</div>
   <div class="title-sub">based on <i>Numéro Deux</i> by David Foenkinos</div>
   <div class="hero-meta"><b>2026.12.8(TUE) – 2027.3.28(SUN)</b><br>LG아트센터 서울 U+ 스테이지</div>
+  <div class="period">
+    <div><span class="period-tag">1차</span>2026.12.08 – 2027.01.31</div>
+    <div><span class="period-tag">2차</span>2027.02.03 – 2027.03.28</div>
+  </div>
   <div class="ticket-row" id="ticketRow"></div>
   <div class="info-row" id="infoRow"></div>
 </div>
@@ -253,6 +259,7 @@ const LINKS={
   info:[
     {label:'🪑 좌석 배치도',url:''},
     {label:'𝕏 공식 트위터',url:'https://x.com/mbz_numerodeux'},
+    {label:'🎁 재관람 혜택',url:'https://x.com/mbz_numerodeux/status/2118187407174783371'},
   ],
 };
 
@@ -260,7 +267,7 @@ const LINKS={
 const ROLES=[
   {attr:'cast',label:'출연',groups:[
     {label:'1차 캐스트',keys:['gimjion','sonwoohyun','jungtaekwoon']},
-    {label:'2차 캐스트 (2월초~)',keys:['jumingjin','jeonsungwoo','junghwi']},
+    {label:'2차 캐스트',keys:['jumingjin','jeonsungwoo','junghwi']},
   ]},
 ];
 const ACTOR={gimjion:'김지온',sonwoohyun:'손우현',jungtaekwoon:'정택운',jumingjin:'주민진',jeonsungwoo:'전성우',junghwi:'정휘'};
