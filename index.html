@@ -226,7 +226,7 @@ a.event-tag:hover{text-decoration:underline;}
 <div class="pin-bar" id="pinBar"></div>
 <div class="filter-section" id="filterSection"></div>
 <div class="count-info" id="countInfo"></div>
-<div class="input-help">좌석 입력 · 일반석 <b>E-9</b> · 무대 테이블석 <b>테이블-3</b> · 바 스툴석 <b>스툴-2</b> · 무대 일렬석 <b>일렬-4</b> · 발코니 <b>좌발-5</b> / <b>우발-5</b></div>
+<div class="input-help">좌석 입력 · 일반석 <b>E-9</b> · 무대 테이블석 <b>T-3</b> · 바 스툴석 <b>B-2</b> · 무대 일렬석 <b>S-4</b> · 발코니 <b>BL-5</b> / <b>BR-5</b></div>
 
 <div class="table-wrap" id="tableWrap"></div>
 
@@ -452,7 +452,7 @@ function renderTable(){
   wrap.style.setProperty('--nroles',ROLES.length);
   let h=`<div class="table-header"><div class="th">날짜</div><div class="th" style="text-align:center;">요일</div><div class="th" style="text-align:center;">시간</div>`+
     ROLES.map(r=>`<div class="th" style="text-align:center;">${r.label}</div>`).join('')+
-    `<div class="th" style="text-align:center;">좌석<span class="th-hint">예: E-9 / 테이블-3</span></div><div class="th"></div></div>`;
+    `<div class="th" style="text-align:center;">좌석<span class="th-hint">예: E-9 / T-3</span></div><div class="th"></div></div>`;
   if(!SHOWS.length){wrap.innerHTML=h;return;}
   const byDate={};SHOWS.forEach(s=>{(byDate[s.date]=byDate[s.date]||[]).push(s);});
   const start=new Date(SHOWS[0].y,SHOWS[0].m-1,SHOWS[0].d);
@@ -580,8 +580,8 @@ function parseSeat(val){
   const v=val.trim().toUpperCase().replace(/\s+/g,'').replace(/번|석|열/g,'').replace(/[_.·]/g,'-');
   let m, key=null;
   if((m=v.match(/^(테이블|테|TB|T)-?(\d{1,2})$/)))key='T-'+parseInt(m[2]);
-  else if((m=v.match(/^(바스툴|스툴|바|ST|S)-?(\d{1,2})$/)))key='S-'+parseInt(m[2]);
-  else if((m=v.match(/^(무대일렬|일렬|R)-?(\d{1,2})$/)))key='R-'+parseInt(m[2]);
+  else if((m=v.match(/^(바스툴|스툴|바|B)-?(\d{1,2})$/)))key='S-'+parseInt(m[2]);   // 바 스툴석 B-2
+  else if((m=v.match(/^(무대일렬|일렬|S)-?(\d{1,2})$/)))key='R-'+parseInt(m[2]);     // 무대 일렬석 S-4
   else if((m=v.match(/^(좌측발코니|좌발코니|발코니좌|좌발|좌|BL)-?(\d{1,2})$/)))key='BL-'+parseInt(m[2]);
   else if((m=v.match(/^(우측발코니|우발코니|발코니우|우발|우|BR)-?(\d{1,2})$/)))key='BR-'+parseInt(m[2]);
   else if((m=v.match(/^([E-Q])-?(\d{1,2})$/)))key='G-'+m[1]+'-'+parseInt(m[2]);
@@ -591,11 +591,11 @@ function seatDisplay(key){
   const p=key.split('-');
   switch(p[0]){
     case 'G':return p[1]+'-'+p[2];
-    case 'T':return '테이블 '+p[1];
-    case 'S':return '스툴 '+p[1];
-    case 'R':return '일렬 '+p[1];
-    case 'BL':return '좌발 '+p[1];
-    case 'BR':return '우발 '+p[1];
+    case 'T':return 'T-'+p[1];
+    case 'S':return 'B-'+p[1];
+    case 'R':return 'S-'+p[1];
+    case 'BL':return 'BL-'+p[1];
+    case 'BR':return 'BR-'+p[1];
   }
   return key;
 }
