@@ -201,6 +201,9 @@ a.event-tag:hover{text-decoration:underline;}
 }
 </style>
 <link rel="stylesheet" href="notices/archive.css">
+<script>/* 정산판 저장: 화면을 축소하면 얇은 선이 0px이 되어 이미지 저장이 실패하던 문제 방지 */
+(function(){var P=window.CanvasRenderingContext2D&&CanvasRenderingContext2D.prototype;if(!P||P.__safePattern)return;var o=P.createPattern;
+P.createPattern=function(img,rep){if(img&&('width' in img)&&(!img.width||!img.height)){var c=document.createElement('canvas');c.width=c.height=1;return o.call(this,c,rep);}return o.call(this,img,rep);};P.__safePattern=1;})();</script>
 </head>
 <body>
 
