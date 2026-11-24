@@ -200,6 +200,7 @@ a.event-tag:hover{text-decoration:underline;}
   .stage-label{font-size:13px;}
 }
 </style>
+<link rel="stylesheet" href="notices/archive.css">
 </head>
 <body>
 
@@ -216,6 +217,9 @@ a.event-tag:hover{text-decoration:underline;}
   <div class="ticket-row" id="ticketRow"></div>
   <div class="info-row" id="infoRow"></div>
 </div>
+
+<nav class="np-tabs np-root" id="np-tabs" data-np="second-child" aria-label="보기 선택"></nav>
+<div id="np" class="content np-root" data-np="second-child" data-account="mbz_numerodeux" hidden></div>
 
 <div class="content">
 
@@ -299,7 +303,6 @@ const LINKS={
     {label:'🪑 좌석 배치도',url:''},
     {label:'𝕏 공식 트위터',url:'https://x.com/mbz_numerodeux'},
     {label:'🎁 재관람 혜택',url:'https://x.com/mbz_numerodeux/status/2118187407174783371'},
-    {label:'📋 공지 아카이브',url:'https://claude.ai/artifact/9jwX8pGLLbBjrgLus5ruSq'},
   ],
 };
 
@@ -827,5 +830,6 @@ SHOWS.forEach(s=>renderTags(s.sid));
 if(pinnedSel)ROLE_ATTRS.forEach(a=>{sel[a]=(pinnedSel[a]||[]).filter(k=>ROLE_KEYS[a].includes(k));});
 applyFilter();
 </script>
+<script src="notices/archive.js" defer></script>
 </body>
 </html>
