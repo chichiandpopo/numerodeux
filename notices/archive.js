@@ -48,7 +48,7 @@ function render(){
   if(cat==='사진'||cat==='포스터'){list.forEach(function(x){(x.media||[]).forEach(function(m){lbList.push([m,x.id]);html+=ph(x,m,capOf(x))})});html=html?'<div class="np-grid">'+html+'</div>':''}
   else{var mo='';list.forEach(function(x){(x.media||[]).forEach(function(m){lbList.push([m,x.id])});var d=kst(x.ts),k=d.getUTCFullYear()+'. '+(d.getUTCMonth()+1);if(k!==mo){html+='<h3 class="np-month">'+k+'</h3>';mo=k}html+=card(x)})}
   root.querySelector('.np-list').innerHTML=html||'<p class="np-empty">'+(q?'검색어와 맞는 글이 없어요.':'이 분류에는 아직 글이 없어요.')+'</p>';
-  if(updatedAt){var c=kst(updatedAt);root.querySelector('.np-sub').textContent='X 공식계정 @'+ACC+'에서 모은 글 · 마지막 확인 '+(c.getUTCMonth()+1)+'/'+c.getUTCDate()+' '+two(c.getUTCHours())+':'+two(c.getUTCMinutes())}}
+  if(updatedAt){var c=kst(updatedAt);root.querySelector('.np-sub').textContent='X 공식계정 @'+ACC+'에서 모은 글 · 마지막 업데이트 '+(c.getUTCMonth()+1)+'/'+c.getUTCDate()+' '+two(c.getUTCHours())+':'+two(c.getUTCMinutes())}}
 function load(){if(loaded||loading)return;loading=true;render();
   fetch(BASE+'notices.json?v='+Math.floor(Date.now()/3e5),{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
     var seen={};items=(d.items||[]).filter(function(x){if(!x||!x.id||seen[x.id]||x.hidden)return false;seen[x.id]=1;return true}).map(function(x){x.media=Array.isArray(x.media)?x.media:[];x.cat=x.cat||catOf(x.text||'');return x}).sort(function(a,b){return a.ts<b.ts?1:-1});
