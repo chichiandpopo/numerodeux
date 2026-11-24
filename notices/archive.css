@@ -62,3 +62,19 @@ body.np-on .np-main{display:none!important}
 .np-root[data-np=othello] .np-n{backdrop-filter:blur(2px)}
 #np[data-np=agatha] .np-seg button{background:rgba(54,9,12,.45);border-color:rgba(236,210,156,.45);color:#f5e3ba}
 #np[data-np=agatha] .np-seg button.on{background:#ecd29c;border-color:#ecd29c;color:#4d1013}
+.np-root[data-np=oneiromancy]{--np-ink:#f0eadc;--np-soft:#b9b2a2;--np-ac:#c9a84c;--np-on:#0a0f2e;--np-gold:#e8c96a;--np-card:rgba(8,14,45,.65);--np-line:rgba(201,168,76,.3);--np-seg:rgba(8,14,45,.5);--np-fH:'Noto Serif KR',serif}
+.np-root[data-np=hymn]{--np-ink:#1a3a35;--np-soft:#4a7a70;--np-ac:#1a5a4a;--np-on:#fff;--np-gold:#f59e0b;--np-card:rgba(255,255,255,.78);--np-line:rgba(26,90,74,.25);--np-seg:rgba(255,255,255,.6);--np-fH:'Noto Sans KR',sans-serif}
+.np-root[data-np=gone-tomorrow]{--np-ink:#2a2420;--np-soft:#6b6358;--np-ac:#8f1f2c;--np-on:#fff;--np-gold:#b58b5a;--np-card:rgba(255,255,255,.78);--np-line:rgba(143,31,44,.3);--np-seg:rgba(255,255,255,.6);--np-fH:'Song Myung',serif}
+.np-root[data-np=billy]{--np-ink:#111;--np-soft:#777;--np-ac:#d42b2b;--np-on:#fff;--np-gold:#d42b2b;--np-card:#fff;--np-line:rgba(17,17,17,.14);--np-seg:#fff;--np-fH:'Anton','Noto Sans KR',sans-serif}
+.np-root[data-np=billy] .np-head,.np-root[data-np=billy] .np-month{letter-spacing:2px}
+.np-root[data-np=oneiromancy].np-pad,.np-root[data-np=hymn].np-pad,.np-root[data-np=billy].np-pad{max-width:720px;margin:0 auto 14px}
+/* 탭: 위쪽 링크 버튼과 구분되는 밑줄 탭 */
+.np-tabs{gap:0;max-width:720px;margin:22px auto 16px;padding:0 10px;border-bottom:1.5px solid var(--np-line);flex-wrap:nowrap}
+.np-tabs button,.np-tabs.np-root button{flex:1 1 0;max-width:none;border:none;border-bottom:3px solid transparent;margin-bottom:-1.5px;background:transparent;border-radius:0;padding:10px 6px 9px;font:800 15px 'Noto Sans KR',sans-serif;letter-spacing:.5px;color:var(--np-ink);opacity:.5;min-height:46px;box-shadow:none}
+.np-tabs button[aria-selected=true],.np-tabs.np-root button[aria-selected=true]{background:transparent;color:var(--np-ink);opacity:1;border-bottom-color:var(--np-ac)}
+.np-tabs button:hover{opacity:.8}
+.np-tabs.np-root[data-np=agatha]{border-bottom-color:rgba(236,210,156,.45)}
+.np-tabs.np-root[data-np=agatha] button{background:transparent;border-color:transparent;color:#f5e3ba}
+.np-tabs.np-root[data-np=agatha] button[aria-selected=true]{background:transparent;color:#ecd29c;border-bottom-color:#ecd29c}
+.np-tabs.np-root[data-np=othello] button[aria-selected=true]{color:#e2c26b;border-bottom-color:#e2c26b}
+.np-tabs.np-root[data-np=oneiromancy] button[aria-selected=true]{color:#e8c96a;border-bottom-color:#e8c96a}
