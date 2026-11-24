@@ -134,21 +134,21 @@ a.event-tag:hover{text-decoration:underline;}
 .cast-cnt span{font-size:12px;color:#4a433e;}
 
 /* ---------- seat map ---------- */
-.seat-map-section{background:#f7e6b5;border:1px solid rgba(28,25,23,0.25);border-radius:2px;padding:12px 6px 12px;--s:16px;--gap:1.5px;}
-.map-scroll{overflow:hidden;display:flex;justify-content:center;}
+.seat-map-section{background:transparent;border:none;border-radius:0;padding:6px 0 4px;--s:16px;--gap:1.5px;}
+.map-scroll{overflow:hidden;display:flex;justify-content:center;padding:8px 0 2px;box-sizing:content-box;}
 .map-grid{display:grid;gap:var(--gap);width:max-content;
   grid-template-columns:var(--s) 6px var(--s) repeat(21,var(--s)) var(--s) 6px var(--s);
   grid-template-rows:repeat(11,var(--s)) 8px repeat(12,var(--s)) 14px repeat(3,var(--s));}
-.stage-bg{background:#ddd2b8;border-radius:2px;}
-.stage-label{display:flex;align-items:center;justify-content:center;font-family:'Libre Caslon Text',serif;font-size:10px;font-weight:700;letter-spacing:5px;color:#5a4a2c;}
+.stage-bg{background:rgba(29,23,18,0.13);border-radius:4px;margin:-7px -8px -6px;}
+.stage-label{display:flex;align-items:center;justify-content:center;font-family:'Libre Caslon Text',serif;font-size:11px;font-weight:700;letter-spacing:5px;color:#1d1712;}
 .row-label{font-size:8px;font-weight:700;color:#5a524c;display:flex;align-items:center;justify-content:center;}
 .floor-label{font-family:'Libre Caslon Text',serif;font-size:9px;font-weight:700;color:#1c1917;display:flex;align-items:center;justify-content:center;}
 .seat{width:var(--s);height:var(--s);font-size:7px;border-radius:2px;font-weight:800;display:flex;align-items:center;justify-content:center;border:1px solid;}
-.c-gen{background:#e0d9e6;color:#5b4b68;border-color:#c6bad0;}
-.c-table{background:#d7e2eb;color:#34536e;border-color:#b3c6d7;}
-.c-stool{background:#d9e6da;color:#36603f;border-color:#b4cdb7;}
-.c-line{background:#eedce3;color:#7a3a57;border-color:#dbbaca;}
-.c-bal{background:#ebe0d0;color:#6e5232;border-color:#d4c1a4;}
+.c-gen{background:#fffaf0;color:#6e5c40;border-color:#d8c79e;}
+.c-table{background:#e7e1d4;color:#4f4536;border-color:#c4b9a3;}
+.c-stool{background:#dfe3d0;color:#4b5532;border-color:#bcc39f;}
+.c-line{background:#f1dccf;color:#7a4026;border-color:#dcb69f;}
+.c-bal{background:#e2d6c4;color:#5e4a32;border-color:#c7b496;}
 .seat.hold{background:#d2cec8;color:#8a847c;border:1px dashed #a39d94;}
 .seat.mk1{background:#f6d465!important;color:#3a2a00!important;border:1px solid #d6a91c!important;}
 .seat.mk2{background:#e9b315!important;color:#2a1f00!important;border:1px solid #b38405!important;}
@@ -203,7 +203,7 @@ a.event-tag:hover{text-decoration:underline;}
   .seat-map-section{--s:22px;--gap:2px;}
   .seat{font-size:9px;}
   .row-label{font-size:10px;}
-  .stage-label{font-size:13px;}
+  .stage-label{font-size:14px;letter-spacing:6px;}
 }
 </style>
 <link rel="stylesheet" href="notices/archive.css">
@@ -510,8 +510,8 @@ const COLORS=[
   {bg:'#6b4a1a',fg:'#fff',label:'4회'},{bg:'#1c1917',fg:'#f2c230',label:'5회 이상'},
 ];
 const SEAT_CATS=[
-  {pre:['G'],label:'일반석',c:'#9a86ad'},{pre:['T'],label:'테이블',c:'#6f93b4'},{pre:['S'],label:'바 스툴',c:'#73a07c'},
-  {pre:['R'],label:'일렬석',c:'#c07895'},{pre:['BL','BR'],label:'발코니',c:'#c09a62'},
+  {pre:['G'],label:'일반석',c:'#b7a57a'},{pre:['T'],label:'테이블',c:'#8f8572'},{pre:['S'],label:'바 스툴',c:'#8c9663'},
+  {pre:['R'],label:'일렬석',c:'#c48a6a'},{pre:['BL','BR'],label:'발코니',c:'#a38867'},
 ];
 function addSeat(g,key,label,col,row,cat,hold){
   const s=document.createElement('div');
@@ -529,7 +529,7 @@ function buildMap(){
   const P=SEATPLAN, C=n=>n+3; // 좌석열 n → grid column
   // 무대
   const bg=document.createElement('div');bg.className='stage-bg';bg.style.gridColumn='4 / 25';bg.style.gridRow='1 / 12';g.appendChild(bg);
-  addText(g,'STAGE','stage-label','10 / 16','5 / 7');
+  addText(g,'STAGE','stage-label','9 / 17','4 / 9');
   // 테이블석: 2x2 블록, 왼쪽 열(1~16) / 오른쪽 열(17~32)
   [0,3,6,9].forEach((r0,k)=>{
     [[1,0],[2,0],[1,1],[2,1]].forEach(([c,dr],i)=>{
