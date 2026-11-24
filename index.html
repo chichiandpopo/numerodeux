@@ -145,10 +145,10 @@ a.event-tag:hover{text-decoration:underline;}
 .floor-label{font-family:'Libre Caslon Text',serif;font-size:9px;font-weight:700;color:#1c1917;display:flex;align-items:center;justify-content:center;}
 .seat{width:var(--s);height:var(--s);font-size:7px;border-radius:2px;font-weight:800;display:flex;align-items:center;justify-content:center;border:1px solid;}
 .c-gen{background:#fffaf0;color:#6e5c40;border-color:#d8c79e;}
-.c-table{background:#e7e1d4;color:#4f4536;border-color:#c4b9a3;}
-.c-stool{background:#dfe3d0;color:#4b5532;border-color:#bcc39f;}
-.c-line{background:#f1dccf;color:#7a4026;border-color:#dcb69f;}
-.c-bal{background:#e2d6c4;color:#5e4a32;border-color:#c7b496;}
+.c-table{background:#cfdcea;color:#2c4a68;border-color:#8eaac6;}
+.c-stool{background:#d2e5cf;color:#2d5634;border-color:#8bb68f;}
+.c-line{background:#f4ccd7;color:#7d2a45;border-color:#d991a6;}
+.c-bal{background:#f5d3b9;color:#7a4320;border-color:#d99e74;}
 .seat.hold{background:#d2cec8;color:#8a847c;border:1px dashed #a39d94;}
 .seat.mk1{background:#f6d465!important;color:#3a2a00!important;border:1px solid #d6a91c!important;}
 .seat.mk2{background:#e9b315!important;color:#2a1f00!important;border:1px solid #b38405!important;}
@@ -510,8 +510,8 @@ const COLORS=[
   {bg:'#6b4a1a',fg:'#fff',label:'4회'},{bg:'#1c1917',fg:'#f2c230',label:'5회 이상'},
 ];
 const SEAT_CATS=[
-  {pre:['G'],label:'일반석',c:'#b7a57a'},{pre:['T'],label:'테이블',c:'#8f8572'},{pre:['S'],label:'바 스툴',c:'#8c9663'},
-  {pre:['R'],label:'일렬석',c:'#c48a6a'},{pre:['BL','BR'],label:'발코니',c:'#a38867'},
+  {pre:['G'],label:'일반석',c:'#b7a57a'},{pre:['T'],label:'테이블',c:'#5f86ad'},{pre:['S'],label:'바 스툴',c:'#5f9a68'},
+  {pre:['R'],label:'일렬석',c:'#c46a86'},{pre:['BL','BR'],label:'발코니',c:'#c98a55'},
 ];
 function addSeat(g,key,label,col,row,cat,hold){
   const s=document.createElement('div');
